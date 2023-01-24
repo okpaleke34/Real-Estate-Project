@@ -143,15 +143,6 @@ vector<vector<string>> RealEstate::fetchWhere(int index, string value)
 // fetch some rows of the csv data according to the value as an associative array(vector)
 vector<vector<string>>  RealEstate::fetchWhere(string str_input)
 {
-    char char_type[50], char_city[50];
-    int minA, maxA, amount;
-    //convert string to char
-    const char* char_input = str_input.c_str();
-    int ret = sscanf_s(char_input, "%9s%9s%d-%d", char_type, 50, char_city, 50, &minA, &maxA);
-
-    std::string str_city, str_type;
-    str_type = char_type;
-    str_city = char_city;
 
     vector<vector<string>> content;
     vector<string> row;
@@ -179,82 +170,28 @@ vector<vector<string>>  RealEstate::fetchWhere(string str_input)
     //make search
     for (int i = 0; i < content.size(); i++)
     {
-        if (i == 0) {
-            retContent.push_back(content[i]);
-        }
-        else {
-            rowType = content[i][0];
-            rowDim = content[i][1];
-            rowLocation = content[i][2];
-            rowPrice = content[i][3];
+        rowType = content[i][0];
+        rowLocation = content[i][2];
 
-            std::stringstream ss(rowPrice);
-            ss >> amount;
-            if (rowType.find(str_type) != std::string::npos && rowLocation.find(str_city) != std::string::npos && amount >= minA && amount <= maxA) {
-                retContent.push_back(content[i]);
-            }
+        if (this->str_tolower(rowType).find(this->str_tolower(str_input)) != std::string::npos || this->str_tolower(rowLocation).find(this->str_tolower(str_input)) != std::string::npos) {
+            retContent.push_back(content[i]);
         }
     }
     return retContent;
 }
-
-
-// fetch some rows of the csv data according to the value as an associative array(vector)
-vector<vector<string>>  RealEstate::findWhere(string str_input)
+//convert string to upper case
+string  RealEstate::str_toupper(string str)
 {
-    char char_type[50], char_city[50];
-    int minA, maxA, amount;
-    //convert string to char
-    const char* char_input = str_input.c_str();
-    int ret = sscanf_s(char_input, "%9s%9s%d-%d", char_type, 50, char_city, 50, &minA, &maxA);
+    transform(str.begin(), str.end(), str.begin(), ::toupper);
+    return str;
+}
 
-    std::string str_city, str_type;
-    str_type = char_type;
-    str_city = char_city;
 
-    vector<vector<string>> content;
-    vector<string> row;
-    string line, word;
-    fstream file(file_path, ios::in);
-    if (file.is_open())
-    {
-        while (getline(file, line))
-        {
-            row.clear();
-
-            stringstream str(line);
-
-            while (getline(str, word, ','))
-                row.push_back(word);
-            content.push_back(row);
-        }
-    }
-    else {
-        cout << "Could not open the file\n";
-    }
-
-    string rowType, rowDim, rowLocation, rowPrice;
-    vector<vector<string>> retContent;
-    //make search
-    for (int i = 0; i < content.size(); i++)
-    {
-        if (i == 0) {
-            retContent.push_back(content[i]);
-        }
-        else {
-            rowType = content[i][0];
-            rowDim = content[i][1];
-            rowLocation = content[i][2];
-            rowPrice = content[i][3];
-
-            std::stringstream ss(rowPrice);
-            ss >> amount;
-            if (rowType.find(str_type) != std::string::npos && rowLocation.find(str_city) != std::string::npos && amount >= minA && amount <= maxA) {
-                retContent.push_back(content[i]);
-            }
-        }
-    }
-    return retContent;
+//convert string to lower case
+string  RealEstate::str_tolower(string str)
+{
+    transform(str.begin(), str.end(), str.begin(), ::tolower);
+    return str;
 }
 //Remove row from the CSV file
 void RealEstate::removeRow(int rowID)
@@ -307,7 +244,7 @@ void RealEstate::addRow(string data){
     // Add the row
     csvFile << data;
     // Close the file
-    
+
     csvFile.close();
 }
 // print all the data in the csv file

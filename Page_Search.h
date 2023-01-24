@@ -29,13 +29,16 @@ namespace RealEstateProject {
 	/// </summary>
 	public ref class Page_Search : public System::Windows::Forms::Form
 	{
-	private: String^ estate_type;
+	private:
+		String^ estate_type;
+		String^ search_by;
 	public:
 
 		RealEstate* utils = new RealEstate(LAND);
-		Page_Search(String^ type)
+		Page_Search(String^ type, String^ searchby)
 		{
 			this->estate_type = type;
+			this->search_by = searchby;
 			InitializeComponent();
 			//
 			//TODO: Add the constructor code here
@@ -180,8 +183,9 @@ namespace RealEstateProject {
 			this->search_button->Name = L"search_button";
 			this->search_button->Size = System::Drawing::Size(181, 53);
 			this->search_button->TabIndex = 5;
-			this->search_button->Text = L"Search List";
+			this->search_button->Text = L"Search Property";
 			this->search_button->UseVisualStyleBackColor = false;
+			this->search_button->Click += gcnew System::EventHandler(this, &Page_Search::search_button_Click);
 			// 
 			// info_label
 			// 
@@ -209,13 +213,15 @@ namespace RealEstateProject {
 			this->ClientSize = System::Drawing::Size(1258, 952);
 			this->Controls->Add(this->estate_type_label);
 			this->Controls->Add(this->info_label);
-			this->Controls->Add(this->search_button);
-			this->Controls->Add(this->search_box);
+			if(this->search_by == "all") {
+				this->Controls->Add(this->search_button);
+				this->Controls->Add(this->search_box);
+			}
 			this->Controls->Add(this->ViewData);
 			this->Controls->Add(this->Back2Page_Home);
 			this->Controls->Add(this->data_list);
 			this->Name = L"Page_Search";
-			this->Text = L"Search Items";
+			this->Text = L"Search Property";
 			this->Load += gcnew System::EventHandler(this, &Page_Search::Page_Search_Load);
 			this->ResumeLayout(false);
 			this->PerformLayout();
@@ -227,5 +233,6 @@ namespace RealEstateProject {
 	private: System::Void ViewData_Click(System::Object^ sender, System::EventArgs^ e);
 	
 	private:System::Void Back2Page_Home_Click(System::Object^ sender, System::EventArgs^ e);
+	private: System::Void search_button_Click(System::Object^ sender, System::EventArgs^ e);
 };
 }

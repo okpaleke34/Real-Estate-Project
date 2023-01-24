@@ -4,6 +4,7 @@
 //
 using namespace RealEstateProject;
 
+//
 System::Void Page_ThankYou::go2Main_Click(System::Object^ sender, System::EventArgs^ e) {
 	RealEstateProject::Page_Home Page_Home;
 	this->Hide();

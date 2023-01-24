@@ -32,7 +32,33 @@ System::Void Page_Admin_ListProperty::Page_Admin_ListProperty_Load(System::Objec
 		}
 		else if (estate_type == "land") {
 			estate_type_label->Text = "land";
+			Land* land = new Land(LAND);
+			vector<vector<string>> lands = land->fetchAll();
+			for (int i = 0; i < lands.size(); i++)
+			{
+				ListViewItem^ item = (gcnew System::Windows::Forms::ListViewItem(utils->toSystemString(to_string(i + 1)), 0));
+				item->SubItems->Add(utils->toSystemString(lands[i][0]));
+				item->SubItems->Add(utils->toSystemString(lands[i][1]));
+				item->SubItems->Add(utils->toSystemString(lands[i][2]));
+				item->SubItems->Add(utils->toSystemString(land->moneyFormat<string>(lands[i][3])));
 
+				data_list->Items->Add(item);
+			}
+		}
+		else{
+			estate_type_label->Text = "house";
+			House* house = new House(HOUSE);
+			vector<vector<string>> houses = house->fetchAll();
+			for (int i = 0; i < houses.size(); i++)
+			{
+				ListViewItem^ item = (gcnew System::Windows::Forms::ListViewItem(utils->toSystemString(to_string(i + 1)), 0));
+				item->SubItems->Add(utils->toSystemString(houses[i][0]));
+				item->SubItems->Add(utils->toSystemString(houses[i][1]));
+				item->SubItems->Add(utils->toSystemString(houses[i][2]));
+				item->SubItems->Add(utils->toSystemString(house->moneyFormat<string>(houses[i][3])));
+
+				data_list->Items->Add(item);
+			}
 		}
 	}
 	catch (const std::runtime_error& ex) {
@@ -48,11 +74,6 @@ System::Void Page_Admin_ListProperty::Page_Admin_ListProperty_Load(System::Objec
 
 //evenmt that happens when 1 element is selected and clicked
 System::Void Page_Admin_ListProperty::DeleteItem_Click(System::Object^ sender, System::EventArgs^ e) {
-
-	//MessageBox::Show(estate_type_label->Text, "Error", MessageBoxButtons::OK, MessageBoxIcon::Exclamation);
-
-	/*String^ selectedIndex = data_list->SelectedItems[0]->SubItems[0]->Text;
-	String^ selectedLocation = data_list->SelectedItems[0]->SubItems[2]->Text;*/
 	
 
 	if (MessageBox::Show("Are you sure you want to delete "+data_list->SelectedItems[0]->SubItems[1]->Text+"  located at " + data_list->SelectedItems[0]->SubItems[3]->Text + " ? ", "Confirmation", MessageBoxButtons::YesNo, MessageBoxIcon::Question) == System::Windows::Forms::DialogResult::Yes)
@@ -60,13 +81,22 @@ System::Void Page_Admin_ListProperty::DeleteItem_Click(System::Object^ sender, S
 		int id = System::Int32::Parse(data_list->SelectedItems[0]->SubItems[0]->Text);
 		id -= 1;//remove 1 to suit the row id
 		try {
+
 			if (estate_type == "apartment") {
 				Apartment* apartment = new Apartment(APARTMENT);
 				apartment->removeRow(id);
 			}
 			else if (estate_type == "land") {
-				estate_type_label->Text = "land";
-
+				Land* land = new Land(LAND);
+				land->removeRow(id);
+			}
+			else if (estate_type == "house") {
+				House* house = new House(HOUSE);
+				house->removeRow(id);
+			}
+			else {
+				MessageBox::Show("Failed to delete item", "Error", MessageBoxButtons::OK, MessageBoxIcon::Exclamation);
+				return;
 			}
 
 			MessageBox::Show("Property deleted successfully", "Alert", MessageBoxButtons::OK);

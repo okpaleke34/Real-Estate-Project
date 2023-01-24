@@ -5,19 +5,19 @@
 using namespace RealEstateProject;
 
 System::Void Page_Home::apartment_label_Click(System::Object^ sender, System::EventArgs^ e) {
-	RealEstateProject::Page_Search^ page_search = gcnew Page_Search("apartment");
+	RealEstateProject::Page_Search^ page_search = gcnew Page_Search("apartment","all");
 	this->Hide();
 	page_search->ShowDialog();
 }
 
 System::Void Page_Home::land_label_Click(System::Object^ sender, System::EventArgs^ e) {
-	RealEstateProject::Page_Search^ page_search = gcnew Page_Search("land");
+	RealEstateProject::Page_Search^ page_search = gcnew Page_Search("land","all");
 	this->Hide();
 	page_search->ShowDialog();
 }
 
 System::Void Page_Home::house_label_Click(System::Object^ sender, System::EventArgs^ e) {
-	RealEstateProject::Page_Search^ page_search = gcnew Page_Search("house");
+	RealEstateProject::Page_Search^ page_search = gcnew Page_Search("house","all");
 	this->Hide();
 	page_search->ShowDialog();
 }

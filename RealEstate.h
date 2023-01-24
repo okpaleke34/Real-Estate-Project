@@ -55,6 +55,11 @@ public:
     System::String^ toSystemString(string str);
     //Convert System managed String(System::String^) to std::string
     std::string toStdString(System::String^ s);
+
+    //convert string to upper case
+    string str_toupper(string str);
+    //convert string to lower case
+    string str_tolower(string str);
 };
 
 #endif // REALESTATE_H

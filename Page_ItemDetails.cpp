@@ -8,7 +8,7 @@
 using namespace RealEstateProject;
 
 System::Void Page_ItemDetails::goBack_Click(System::Object^ sender, System::EventArgs^ e) {
-	RealEstateProject::Page_Search^ page_search = gcnew Page_Search(this->estate_type);
+	RealEstateProject::Page_Search^ page_search = gcnew Page_Search(this->estate_type,"all");
 	this->Hide();
 	page_search->ShowDialog();
 }

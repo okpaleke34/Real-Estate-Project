@@ -12,7 +12,6 @@
 #include <iomanip>
 
 #include "RealEstate.h"
-//#include "../src/RealEstate.cpp"
 
 
 class House : public RealEstate
