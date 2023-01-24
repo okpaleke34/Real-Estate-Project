@@ -3,7 +3,7 @@
 #include <list>
 #include <string>
 #include <msclr/marshal.h>
-//#include "Home.h"
+//#include "Page_Home.h"
 #include "Apartment.h"
 #include "Land.h"
 #include "House.h"
@@ -13,7 +13,7 @@
 #define APARTMENT "apartments.csv"
 
 using namespace std;
-//class Home;
+//class Page_Home;
 
 namespace RealEstateProject {
 
@@ -59,7 +59,7 @@ namespace RealEstateProject {
 	private: System::Windows::Forms::ColumnHeader^ dimension;
 	private: System::Windows::Forms::ColumnHeader^ location;
 	private: System::Windows::Forms::ColumnHeader^ price;
-	private: System::Windows::Forms::Button^ Back2Home;
+	private: System::Windows::Forms::Button^ Back2Page_Home;
 	private: System::Windows::Forms::Button^ ViewData;
 	private: System::Windows::Forms::TextBox^ search_box;
 	private: System::Windows::Forms::Button^ search_button;
@@ -90,7 +90,7 @@ namespace RealEstateProject {
 			this->dimension = (gcnew System::Windows::Forms::ColumnHeader());
 			this->location = (gcnew System::Windows::Forms::ColumnHeader());
 			this->price = (gcnew System::Windows::Forms::ColumnHeader());
-			this->Back2Home = (gcnew System::Windows::Forms::Button());
+			this->Back2Page_Home = (gcnew System::Windows::Forms::Button());
 			this->ViewData = (gcnew System::Windows::Forms::Button());
 			this->search_box = (gcnew System::Windows::Forms::TextBox());
 			this->search_button = (gcnew System::Windows::Forms::Button());
@@ -138,25 +138,25 @@ namespace RealEstateProject {
 			this->price->Text = L"Price(zl)";
 			this->price->Width = 100;
 			// 
-			// Back2Home
+			// Back2Page_Home
 			// 
-			this->Back2Home->BackColor = System::Drawing::Color::IndianRed;
-			this->Back2Home->FlatStyle = System::Windows::Forms::FlatStyle::Popup;
-			this->Back2Home->ForeColor = System::Drawing::SystemColors::ButtonHighlight;
-			this->Back2Home->Location = System::Drawing::Point(90, 877);
-			this->Back2Home->Name = L"Back2Home";
-			this->Back2Home->Size = System::Drawing::Size(170, 46);
-			this->Back2Home->TabIndex = 2;
-			this->Back2Home->Text = L"Back";
-			this->Back2Home->UseVisualStyleBackColor = false;
-			this->Back2Home->Click += gcnew System::EventHandler(this, &Page_Search::Back2Home_Click);
+			this->Back2Page_Home->BackColor = System::Drawing::Color::IndianRed;
+			this->Back2Page_Home->FlatStyle = System::Windows::Forms::FlatStyle::Popup;
+			this->Back2Page_Home->ForeColor = System::Drawing::SystemColors::ButtonHighlight;
+			this->Back2Page_Home->Location = System::Drawing::Point(90, 877);
+			this->Back2Page_Home->Name = L"Back2Page_Home";
+			this->Back2Page_Home->Size = System::Drawing::Size(170, 46);
+			this->Back2Page_Home->TabIndex = 2;
+			this->Back2Page_Home->Text = L"Back";
+			this->Back2Page_Home->UseVisualStyleBackColor = false;
+			this->Back2Page_Home->Click += gcnew System::EventHandler(this, &Page_Search::Back2Page_Home_Click);
 			// 
 			// ViewData
 			// 
 			this->ViewData->BackColor = System::Drawing::SystemColors::Highlight;
 			this->ViewData->FlatStyle = System::Windows::Forms::FlatStyle::Popup;
 			this->ViewData->ForeColor = System::Drawing::SystemColors::ButtonHighlight;
-			this->ViewData->Location = System::Drawing::Point(1016, 867);
+			this->ViewData->Location = System::Drawing::Point(1016, 877);
 			this->ViewData->Name = L"ViewData";
 			this->ViewData->Size = System::Drawing::Size(170, 46);
 			this->ViewData->TabIndex = 3;
@@ -212,7 +212,7 @@ namespace RealEstateProject {
 			this->Controls->Add(this->search_button);
 			this->Controls->Add(this->search_box);
 			this->Controls->Add(this->ViewData);
-			this->Controls->Add(this->Back2Home);
+			this->Controls->Add(this->Back2Page_Home);
 			this->Controls->Add(this->data_list);
 			this->Name = L"Page_Search";
 			this->Text = L"Search Items";
@@ -226,6 +226,6 @@ namespace RealEstateProject {
 
 	private: System::Void ViewData_Click(System::Object^ sender, System::EventArgs^ e);
 	
-	private:System::Void Back2Home_Click(System::Object^ sender, System::EventArgs^ e);
+	private:System::Void Back2Page_Home_Click(System::Object^ sender, System::EventArgs^ e);
 };
 }

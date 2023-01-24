@@ -1,17 +1,17 @@
 #include "Page_Search.h"
 #include "Page_ItemDetails.h"
-#include "Home.h"
+#include "Page_Home.h"
 #include <string>
 
 using namespace RealEstateProject;
 
-System::Void Page_Search::Back2Home_Click(System::Object^ sender, System::EventArgs^ e) {
+System::Void Page_Search::Back2Page_Home_Click(System::Object^ sender, System::EventArgs^ e) {
 	this->Hide();
-	RealEstateProject::Home Home;
-	Home.ShowDialog();
+	RealEstateProject::Page_Home Page_Home;
+	Page_Home.ShowDialog();
 }
 
-//Event that happens when any of the home page labels are clicked
+//Event that happens when any of the Page_Home page labels are clicked
 System::Void Page_Search::Page_Search_Load(System::Object^ sender, System::EventArgs^ e) {
 	
 	info_label->Text = "Search " + estate_type + " by location, price and dimension:";
@@ -37,12 +37,12 @@ System::Void Page_Search::Page_Search_Load(System::Object^ sender, System::Event
 		}
 	}
 	catch (const std::runtime_error& ex) {
-		//if there is an error opening a file, go back to the home page
+		//if there is an error opening a file, go back to the Page_Home page
 		System::String^ managedString = gcnew System::String(ex.what());
 		MessageBox::Show("There is an error: " + managedString, "Error", MessageBoxButtons::OK, MessageBoxIcon::Exclamation);
 		this->Hide();
-		RealEstateProject::Home Home;
-		Home.ShowDialog();
+		RealEstateProject::Page_Home Page_Home;
+		Page_Home.ShowDialog();
 	}
 
 }

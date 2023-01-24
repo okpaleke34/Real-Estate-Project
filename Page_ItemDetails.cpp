@@ -1,4 +1,4 @@
-#include "Home.h"
+#include "Page_Home.h"
 #include "Page_Search.h"
 #include "Page_ItemDetails.h"
 #include "Page_ThankYou.h"

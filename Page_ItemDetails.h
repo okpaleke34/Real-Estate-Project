@@ -33,7 +33,7 @@ namespace RealEstateProject {
 		RealEstate* utils = new RealEstate(LAND);
 		Page_ItemDetails(int item, String^ type)
 		{
-			this->itemID = item;
+			this->itemID = item - 1;
 			this->estate_type = type;
 			InitializeComponent();
 			//

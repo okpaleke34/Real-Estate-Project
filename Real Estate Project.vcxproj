@@ -132,7 +132,11 @@
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="Apartment.cpp" />
-    <ClCompile Include="Home.cpp" />
+    <ClCompile Include="Page_Admin_AddProperty.cpp" />
+    <ClCompile Include="Page_Admin_Dashboard.cpp" />
+    <ClCompile Include="Page_Admin_ListProperty.cpp" />
+    <ClCompile Include="Page_Admin_Login.cpp" />
+    <ClCompile Include="Page_Home.cpp" />
     <ClCompile Include="House.cpp" />
     <ClCompile Include="Land.cpp" />
     <ClCompile Include="Page_ItemDetails.cpp" />
@@ -140,12 +144,23 @@
     <ClCompile Include="Page_Search.cpp" />
     <ClCompile Include="Page_ThankYou.cpp" />
     <ClCompile Include="Program.cpp" />
-    <ClCompile Include="DELETE_WinMain.cpp" />
     <ClCompile Include="RealEstate.cpp" />
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="Apartment.h" />
-    <ClInclude Include="Home.h">
+    <ClInclude Include="Page_Admin_AddProperty.h">
+      <FileType>CppForm</FileType>
+    </ClInclude>
+    <ClInclude Include="Page_Admin_Dashboard.h">
+      <FileType>CppForm</FileType>
+    </ClInclude>
+    <ClInclude Include="Page_Admin_ListProperty.h">
+      <FileType>CppForm</FileType>
+    </ClInclude>
+    <ClInclude Include="Page_Admin_Login.h">
+      <FileType>CppForm</FileType>
+    </ClInclude>
+    <ClInclude Include="Page_Home.h">
       <FileType>CppForm</FileType>
     </ClInclude>
     <ClInclude Include="House.h" />
@@ -162,8 +177,20 @@
     <ClInclude Include="RealEstate.h" />
   </ItemGroup>
   <ItemGroup>
-    <EmbeddedResource Include="Home.resx">
-      <DependentUpon>Home.h</DependentUpon>
+    <EmbeddedResource Include="Page_Admin_AddProperty.resx">
+      <DependentUpon>Page_Admin_AddProperty.h</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Page_Admin_Dashboard.resx">
+      <DependentUpon>Page_Admin_Dashboard.h</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Page_Admin_ListProperty.resx">
+      <DependentUpon>Page_Admin_ListProperty.h</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Page_Admin_Login.resx">
+      <DependentUpon>Page_Admin_Login.h</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Page_Home.resx">
+      <DependentUpon>Page_Home.h</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="Page_ItemDetails.resx">
       <DependentUpon>Page_ItemDetails.h</DependentUpon>

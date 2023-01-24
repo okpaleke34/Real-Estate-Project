@@ -35,6 +35,12 @@ public:
     //find row by wide search
     vector<vector<string>>  findWhere(string input);
 
+    //Remove item from the csv file
+    void removeRow(int rowID);
+
+    //Add item to the csv file
+    void addRow(string line);
+
     // print all the data in the csv file
     void printAll(vector<vector<string>> content);
 
@@ -48,7 +54,7 @@ public:
     //Convert std::string to System managed String(System::String^)
     System::String^ toSystemString(string str);
     //Convert System managed String(System::String^) to std::string
-    std::string RealEstate::toStdString(System::String^ s);
+    std::string toStdString(System::String^ s);
 };
 
 #endif // REALESTATE_H

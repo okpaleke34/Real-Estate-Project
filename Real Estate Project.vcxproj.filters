@@ -15,10 +15,7 @@
     </Filter>
   </ItemGroup>
   <ItemGroup>
-    <ClCompile Include="DELETE_WinMain.cpp">
-      <Filter>Source Files</Filter>
-    </ClCompile>
-    <ClCompile Include="Home.cpp">
+    <ClCompile Include="Page_Home.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
     <ClCompile Include="Program.cpp">
@@ -48,9 +45,21 @@
     <ClCompile Include="Page_ThankYou.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
+    <ClCompile Include="Page_Admin_Login.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="Page_Admin_Dashboard.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="Page_Admin_AddProperty.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="Page_Admin_ListProperty.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
-    <ClInclude Include="Home.h">
+    <ClInclude Include="Page_Home.h">
       <Filter>Header Files</Filter>
     </ClInclude>
     <ClInclude Include="Page_Search.h">
@@ -72,6 +81,18 @@
       <Filter>Header Files</Filter>
     </ClInclude>
     <ClInclude Include="Page_ThankYou.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="Page_Admin_Login.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="Page_Admin_Dashboard.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="Page_Admin_AddProperty.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="Page_Admin_ListProperty.h">
       <Filter>Header Files</Filter>
     </ClInclude>
   </ItemGroup>

@@ -1,14 +1,14 @@
 //#include <Windows.h>
-//#include "Home.h"
+//#include "Page_Home.h"
 //#include "Page_Search.h"
 //
 //using namespace RealEstateProject;
-////Home^ Home;
-//class Home;
-//Home ^ zome;
+////Page_Home^ Page_Home;
+//class Page_Home;
+//Page_Home ^ zome;
 //
 ////...
-//System::Void Page_Search::Back2Home_Click(System::Object^ sender, System::EventArgs^ e){
+//System::Void Page_Search::Back2Page_Home_Click(System::Object^ sender, System::EventArgs^ e){
 ////void Page_Search::buttonBack_Click(System::Object^ sender, System::EventArgs^ e) {
 //    this->Hide();
 //    zome->Show();

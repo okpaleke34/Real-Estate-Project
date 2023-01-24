@@ -1,6 +1,6 @@
 //#include <Windows.h>
 //#include <tchar.h>
-//#include "Home.h"
+//#include "Page_Home.h"
 //
 //using namespace RealEstateProject; //project name
 //
@@ -21,14 +21,14 @@
 //    System::Windows::Forms::Application::SetCompatibleTextRenderingDefault(false);
 //
 //    // Create and show the main form
-//    //Home^ form = gcnew Home();
-//    System::Windows::Forms::Application::Run(gcnew Home());
+//    //Page_Home^ form = gcnew Page_Home();
+//    System::Windows::Forms::Application::Run(gcnew Page_Home());
 //
 //    return 0;
 //}
 //
 //
-////#include "Home.h"
+////#include "Page_Home.h"
 ////#include <Windows.h>
 ////
 ////using namespace RealEstateProject; //project name
@@ -37,7 +37,7 @@
 ////    Application::EnableVisualStyles();
 ////    Application::SetCompatibleTextRenderingDefault(false);
 ////
-////    Application::Run(gcnew Home());
+////    Application::Run(gcnew Page_Home());
 ////
 ////    return 0;
 ////}

@@ -1,4 +1,4 @@
-#include "Home.h"
+#include "Page_Home.h"
 #include "Page_Search.h"
 
 using namespace System;
@@ -9,7 +9,6 @@ using namespace System::Windows::Forms;
 void main() {
 	Application::EnableVisualStyles();
 	Application::SetCompatibleTextRenderingDefault(false);
-	//RealEstateProject::Page_Search page_search();
-	RealEstateProject::Home Home;
-	Home.ShowDialog();
+	RealEstateProject::Page_Home Page_Home;
+	Page_Home.ShowDialog();
 }

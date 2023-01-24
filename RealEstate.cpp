@@ -256,7 +256,60 @@ vector<vector<string>>  RealEstate::findWhere(string str_input)
     }
     return retContent;
 }
+//Remove row from the CSV file
+void RealEstate::removeRow(int rowID)
+{
 
+    // Open the file for reading
+    ifstream inputFile(file_path);
+
+    // Check if the file is open
+    if (inputFile.is_open()) {
+        string newData = "";
+        // Current row
+        int currentRow = 0;
+
+        // String to hold the current line
+        string line;
+
+        // Read through the file line by line
+        while (getline(inputFile, line)) {
+            // Check if the current row is the row to remove
+            if (currentRow != rowID) {
+                // Write the line to the temporary file
+                newData += line+"\n";
+            }
+            currentRow++;
+        }
+
+        // Close the input file
+        inputFile.close();
+
+        //remove the new line
+        newData = newData.substr(0, newData.length()-2);
+        //Open the file again and write to it
+        ofstream reWriteFile(file_path);
+        reWriteFile << newData << endl;
+        reWriteFile.close();
+    } 
+    else {
+        // cout << "Unable to open file " << fileName << endl;
+        
+        //Throw a runtime error exception if the number looking for does not exist
+        throw std::runtime_error("Could not open the file\n");
+    }
+}
+
+//Add row to CSV file
+void RealEstate::addRow(string data){
+    // Open the file in append mode
+    std::ofstream csvFile(file_path, std::ios_base::app);
+    // Add the row
+    csvFile << data;
+    // Close the file
+    
+    csvFile.close();
+}
 // print all the data in the csv file
 void RealEstate::printAll(vector<vector<string>> content)
 {

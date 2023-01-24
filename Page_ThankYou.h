@@ -1,6 +1,14 @@
 #pragma once
 #using <System.Drawing.dll>
 #using <System.Windows.Forms.dll>
+#include "Apartment.h"
+#include "Land.h"
+#include "House.h"
+
+#define LAND "lands.csv"
+#define HOUSE "houses.csv"
+#define APARTMENT "apartments.csv"
+
 using namespace System::Drawing::Printing;
 
 namespace RealEstateProject {
@@ -28,20 +36,25 @@ namespace RealEstateProject {
 
 	private: System::Windows::Forms::Label^ label1;
 	private: System::Windows::Forms::RichTextBox^ richTextBox3;
-	private: System::Windows::Forms::ListView^ listView1;
+	private: System::Windows::Forms::ListView^ data_list;
+
 	private: System::Windows::Forms::ColumnHeader^ type;
 	private: System::Windows::Forms::ColumnHeader^ dimension;
 	private: System::Windows::Forms::ColumnHeader^ location;
 	private: System::Windows::Forms::ColumnHeader^ price;
-	private: System::Windows::Forms::Label^ label2;
+	private: System::Windows::Forms::Label^ total_label;
+
 	private: System::Windows::Forms::Button^ go2Main;
 
 
 	private: String^ email;
 	public:
-		Page_ThankYou(int item, String^ type, String^ fullname, String^ email) 
+		RealEstate* utils = new RealEstate(LAND);
+		Page_ThankYou(int item, String^ type, String^ fullname_, String^ email_) 
 		{
 			this->itemID = item;
+			this->email = email_;
+			this->fullname = fullname_;
 			this->estate_type = type;
 			InitializeComponent();
 			//
@@ -78,12 +91,12 @@ namespace RealEstateProject {
 			this->user_details_textbox = (gcnew System::Windows::Forms::RichTextBox());
 			this->label1 = (gcnew System::Windows::Forms::Label());
 			this->richTextBox3 = (gcnew System::Windows::Forms::RichTextBox());
-			this->listView1 = (gcnew System::Windows::Forms::ListView());
+			this->data_list = (gcnew System::Windows::Forms::ListView());
 			this->type = (gcnew System::Windows::Forms::ColumnHeader());
 			this->dimension = (gcnew System::Windows::Forms::ColumnHeader());
 			this->location = (gcnew System::Windows::Forms::ColumnHeader());
 			this->price = (gcnew System::Windows::Forms::ColumnHeader());
-			this->label2 = (gcnew System::Windows::Forms::Label());
+			this->total_label = (gcnew System::Windows::Forms::Label());
 			this->go2Main = (gcnew System::Windows::Forms::Button());
 			this->SuspendLayout();
 			// 
@@ -116,7 +129,7 @@ namespace RealEstateProject {
 				static_cast<System::Byte>(0)));
 			this->label1->Location = System::Drawing::Point(63, 83);
 			this->label1->Name = L"label1";
-			this->label1->Size = System::Drawing::Size(240, 56);
+			this->label1->Size = System::Drawing::Size(160, 37);
 			this->label1->TabIndex = 4;
 			this->label1->Text = L"RECEIPT";
 			// 
@@ -131,20 +144,20 @@ namespace RealEstateProject {
 			this->richTextBox3->TabIndex = 5;
 			this->richTextBox3->Text = L"THANK YOU FOR YOUR PATRONAGE\n";
 			// 
-			// listView1
+			// data_list
 			// 
-			this->listView1->Columns->AddRange(gcnew cli::array< System::Windows::Forms::ColumnHeader^  >(4) {
+			this->data_list->Columns->AddRange(gcnew cli::array< System::Windows::Forms::ColumnHeader^  >(4) {
 				this->type, this->dimension,
 					this->location, this->price
 			});
-			this->listView1->HideSelection = false;
-			this->listView1->Location = System::Drawing::Point(70, 355);
-			this->listView1->Name = L"listView1";
-			this->listView1->Size = System::Drawing::Size(955, 273);
-			this->listView1->TabIndex = 6;
-			this->listView1->UseCompatibleStateImageBehavior = false;
-			this->listView1->View = System::Windows::Forms::View::Details;
-			this->listView1->SelectedIndexChanged += gcnew System::EventHandler(this, &Page_ThankYou::listView1_SelectedIndexChanged);
+			this->data_list->HideSelection = false;
+			this->data_list->Location = System::Drawing::Point(70, 355);
+			this->data_list->Name = L"data_list";
+			this->data_list->Size = System::Drawing::Size(955, 273);
+			this->data_list->TabIndex = 6;
+			this->data_list->UseCompatibleStateImageBehavior = false;
+			this->data_list->View = System::Windows::Forms::View::Details;
+			this->data_list->SelectedIndexChanged += gcnew System::EventHandler(this, &Page_ThankYou::listView1_SelectedIndexChanged);
 			// 
 			// type
 			// 
@@ -159,23 +172,23 @@ namespace RealEstateProject {
 			// location
 			// 
 			this->location->Text = L"LOCATION";
-			this->location->Width = 361;
+			this->location->Width = 271;
 			// 
 			// price
 			// 
 			this->price->Text = L"PRICE";
 			this->price->Width = 126;
 			// 
-			// label2
+			// total_label
 			// 
-			this->label2->AutoSize = true;
-			this->label2->Font = (gcnew System::Drawing::Font(L"Microsoft Sans Serif", 10, System::Drawing::FontStyle::Bold, System::Drawing::GraphicsUnit::Point,
+			this->total_label->AutoSize = true;
+			this->total_label->Font = (gcnew System::Drawing::Font(L"Microsoft Sans Serif", 10, System::Drawing::FontStyle::Bold, System::Drawing::GraphicsUnit::Point,
 				static_cast<System::Byte>(0)));
-			this->label2->Location = System::Drawing::Point(798, 661);
-			this->label2->Name = L"label2";
-			this->label2->Size = System::Drawing::Size(74, 25);
-			this->label2->TabIndex = 7;
-			this->label2->Text = L"Total: ";
+			this->total_label->Location = System::Drawing::Point(798, 661);
+			this->total_label->Name = L"total_label";
+			this->total_label->Size = System::Drawing::Size(74, 25);
+			this->total_label->TabIndex = 7;
+			this->total_label->Text = L"Total: ";
 			// 
 			// go2Main
 			// 
@@ -187,6 +200,7 @@ namespace RealEstateProject {
 			this->go2Main->TabIndex = 8;
 			this->go2Main->Text = L"Go to Menu";
 			this->go2Main->UseVisualStyleBackColor = false;
+			this->go2Main->Click += gcnew System::EventHandler(this, &Page_ThankYou::go2Main_Click);
 			// 
 			// Page_ThankYou
 			// 
@@ -194,8 +208,8 @@ namespace RealEstateProject {
 			this->AutoScaleMode = System::Windows::Forms::AutoScaleMode::Font;
 			this->ClientSize = System::Drawing::Size(1193, 945);
 			this->Controls->Add(this->go2Main);
-			this->Controls->Add(this->label2);
-			this->Controls->Add(this->listView1);
+			this->Controls->Add(this->total_label);
+			this->Controls->Add(this->data_list);
 			this->Controls->Add(this->richTextBox3);
 			this->Controls->Add(this->label1);
 			this->Controls->Add(this->user_details_textbox);
@@ -209,7 +223,29 @@ namespace RealEstateProject {
 		}
 #pragma endregion
 	private: System::Void Page_ThankYou_Load(System::Object^ sender, System::EventArgs^ e) {
-		this->user_details_textbox->Text = this->fullname + "\n"+this->email + "\nPoland";
+		this->user_details_textbox->Text = L""+this->fullname + "\n" + this->email + "\nPoland";
+		if (this->estate_type == "apartment") {
+			Apartment* apartment = new Apartment(APARTMENT);
+			vector<string> row = apartment->fetchRow(this->itemID);
+			if (!row.empty()) {
+				ListViewItem^ item = (gcnew System::Windows::Forms::ListViewItem(utils->toSystemString(row[0]), 0));
+				//item->SubItems->Add(utils->toSystemString(apartment[0]));
+				item->SubItems->Add(utils->toSystemString(row[1]));
+				item->SubItems->Add(utils->toSystemString(row[2]));
+				item->SubItems->Add(utils->toSystemString(utils->moneyFormat<string>(row[3]) + " PLN"));
+
+				data_list->Items->Add(item);
+				total_label->Text = utils->toSystemString(utils->moneyFormat<string>(row[3]) + " PLN ONLY");
+				/*title_label->Text = "APARTMENT DETAILS";
+				type_label->Text = "TYPE: " + utils->toSystemString(row[0]);
+				dimension_label->Text = "DIMENSION: " + utils->toSystemString(row[1]);
+				location_label->Text = "LOCATION: " + utils->toSystemString(row[2]);
+				price_label->Text = "PRICE: " + utils->toSystemString(apartment->moneyFormat<string>(row[3]) + " PLN");*/
+				
+				//Remove data from the Database
+				apartment->removeRow(this->itemID);
+			}
+		}
 		/*PrintDocument^ printDoc = gcnew PrintDocument();
 		printDoc->PrintPage += gcnew PrintPageEventHandler(this, &Page_ThankYou::printDoc_PrintPage);
 		printDoc->Print();*/
@@ -223,7 +259,8 @@ namespace RealEstateProject {
 	}
 	private: System::Void listView1_SelectedIndexChanged(System::Object^ sender, System::EventArgs^ e) {
 	}
-private: System::Void label2_Click(System::Object^ sender, System::EventArgs^ e) {
-}
+	private: System::Void label2_Click(System::Object^ sender, System::EventArgs^ e) {
+	}
+	private: System::Void go2Main_Click(System::Object^ sender, System::EventArgs^ e);
 };
 }
