@@ -361,3 +361,6 @@ MigrationBackup/
 
 # Fody - auto-generated XML schema
 FodyWeavers.xsd
+/database/apartments copy.csv
+/database/lands copy.csv
+/database/houses copy.csv
